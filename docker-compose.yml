@@ -1,0 +1,20 @@
+
+mysql:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: none
+    MYSQL_DATABASE: xerte
+    MYSQL_USER: xerte
+    MYSQL_PASSWORD: xerte
+  expose:
+    - "3306"
+
+apache:
+  #image: php:5.6-apache
+  build: .
+  ports:
+    - "80:80"
+  volumes:
+    - .:/var/www/html/
+  links:
+    - mysql
